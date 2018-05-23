@@ -1,0 +1,147 @@
+---
+title: "Atividade 4"
+author: "Matteus Sthefano Leite da Silva"
+date: "23 de Maio, 2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Respostas
+
+## 1.
+a) Extraindo 1000 amostras para n = 2, 3, 5, 10. 
+
+```{r q-1.1}
+x_population <- c(1, 2, 3, 3, 5)
+x_sample_replace_matrix_2 <- matrix(nrow = 1000, ncol = 2)
+x_sample_replace_matrix_3 <- matrix(nrow = 1000, ncol = 3)
+x_sample_replace_matrix_5 <- matrix(nrow = 1000, ncol = 5)
+x_sample_replace_matrix_10 <- matrix(nrow = 1000, ncol = 10)
+
+x_sample_matrix_2 <- matrix(nrow = 1000, ncol = 2)
+x_sample_matrix_3 <- matrix(nrow = 1000, ncol = 3)
+
+for(i in 1:1000) {
+  x_sample_replace_matrix_2[i,] <- sample(x_population, replace = T, size = 2)
+  x_sample_replace_matrix_3[i,] <- sample(x_population, replace = T, size = 3)
+  x_sample_replace_matrix_5[i,] <- sample(x_population, replace = T, size = 5)
+  x_sample_replace_matrix_10[i,] <- sample(x_population, replace = T, size = 10)
+}
+
+mean_replace_sample_2 <- apply(x_sample_replace_matrix_2, 1, mean)
+mean_replace_sample_3 <- apply(x_sample_replace_matrix_3, 1, mean)
+mean_replace_sample_5 <- apply(x_sample_replace_matrix_5, 1, mean)
+mean_replace_sample_10 <- apply(x_sample_replace_matrix_10, 1, mean)
+
+var_replace_sample_2 <- apply(x_sample_replace_matrix_2, 1, var)
+var_replace_sample_3 <- apply(x_sample_replace_matrix_3, 1, var)
+var_replace_sample_5 <- apply(x_sample_replace_matrix_5, 1, var)
+var_replace_sample_10 <- apply(x_sample_replace_matrix_10, 1, var)
+
+```
+
+Média das médias com amostras de tamanho 2 com reposição:
+
+```{r mean2r}
+mean(mean_replace_sample_2)
+```
+
+Média das médias com amostras de tamanho 3 com reposição:
+
+```{r mean3r}
+mean(mean_replace_sample_3)
+```
+
+Média das médias com amostras de tamanho 5 com reposição:
+
+```{r mean5r}
+mean(mean_replace_sample_5)
+```
+
+Média das médias com amostras de tamanho 10 com reposição:
+
+```{r mean10r}
+mean(mean_replace_sample_10)
+```
+
+Média das variâncias com amostras de tamanho 2 com reposição:
+
+```{r varr2}
+var(mean_replace_sample_2)
+```
+
+Média das variâncias com amostras de tamanho 3 com reposição:
+
+```{r varr3}
+var(mean_replace_sample_3)
+```
+
+Média das variâncias com amostras de tamanho 5 com reposição:
+
+```{r varr5}
+var(mean_replace_sample_5)
+```
+
+Média das variâncias com amostras de tamanho 10 com reposição:
+
+```{r varr10}
+var(mean_replace_sample_10)
+```
+
+Histograma da distribuição de T(X) com n = 2.
+
+```{r histr2}
+hist(mean_replace_sample_2)
+```
+
+Histograma da distribuição de T(X) com n = 3.
+
+```{r histr3}
+hist(mean_replace_sample_3)
+```
+
+Histograma da distribuição de T(X) com n = 5.
+
+```{r histr5}
+hist(mean_replace_sample_5)
+```
+
+Histograma da distribuição de T(X) com n = 10.
+
+```{r histr10}
+hist(mean_replace_sample_10)
+```
+
+b)
+------------------------------------FIM DE ARQUIVO------------------------------------------------------
+
+
+```{r q-1-2.}
+
+for(i in 1:1000) {
+  x_sample_matrix_2[i,] <- sample(x_population, replace = F, size = 2)
+  x_sample_matrix_3[i,] <- sample(x_population, replace = F, size = 3)
+}
+
+mean_sample_2 <- apply(x_sample_matrix_2, 1, mean)
+mean_sample_3 <- apply(x_sample_matrix_3, 1, mean)
+
+var_sample_2 <- apply(x_sample_matrix_2, 1, var)
+var_sample_3 <- apply(x_sample_matrix_3, 1, var)
+
+hist(mean_sample_2)
+hist(mean_sample_3)
+
+mean(x_population)
+
+mean(mean_sample_2)
+mean(mean_sample_3)
+
+var(mean_sample_2)
+var(mean_sample_3)
+```
+
+
