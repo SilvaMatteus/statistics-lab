@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 # Respostas
 
 ## 1.
-a) Extraindo 1000 amostras para n = 2, 3, 5, 10. 
+### a) Extraindo 1000 amostras com reposição para n = 2, 3, 5, 10.
 
 ```{r q-1.1}
 x_population <- c(1, 2, 3, 3, 5)
@@ -43,49 +43,49 @@ var_replace_sample_10 <- apply(x_sample_replace_matrix_10, 1, var)
 
 ```
 
-Média das médias com amostras de tamanho 2 com reposição:
+Média de T(X) com amostras de tamanho 2 com reposição:
 
 ```{r mean2r}
 mean(mean_replace_sample_2)
 ```
 
-Média das médias com amostras de tamanho 3 com reposição:
+Média de T(X) com amostras de tamanho 3 com reposição:
 
 ```{r mean3r}
 mean(mean_replace_sample_3)
 ```
 
-Média das médias com amostras de tamanho 5 com reposição:
+Média de T(X) com amostras de tamanho 5 com reposição:
 
 ```{r mean5r}
 mean(mean_replace_sample_5)
 ```
 
-Média das médias com amostras de tamanho 10 com reposição:
+Média de T(X) com amostras de tamanho 10 com reposição:
 
 ```{r mean10r}
 mean(mean_replace_sample_10)
 ```
 
-Média das variâncias com amostras de tamanho 2 com reposição:
+Variância de T(X) com amostras de tamanho 2 com reposição:
 
 ```{r varr2}
 var(mean_replace_sample_2)
 ```
 
-Média das variâncias com amostras de tamanho 3 com reposição:
+Variância de T(X) com amostras de tamanho 3 com reposição:
 
 ```{r varr3}
 var(mean_replace_sample_3)
 ```
 
-Média das variâncias com amostras de tamanho 5 com reposição:
+Variância de T(X) com amostras de tamanho 5 com reposição:
 
 ```{r varr5}
 var(mean_replace_sample_5)
 ```
 
-Média das variâncias com amostras de tamanho 10 com reposição:
+Variância de T(X) com amostras de tamanho 10 com reposição:
 
 ```{r varr10}
 var(mean_replace_sample_10)
@@ -115,9 +115,7 @@ Histograma da distribuição de T(X) com n = 10.
 hist(mean_replace_sample_10)
 ```
 
-b)
-------------------------------------FIM DE ARQUIVO------------------------------------------------------
-
+### b) Extraindo 1000 amostras sem reposição para n = 2, 3.
 
 ```{r q-1-2.}
 
@@ -134,14 +132,70 @@ var_sample_3 <- apply(x_sample_matrix_3, 1, var)
 
 hist(mean_sample_2)
 hist(mean_sample_3)
+```
 
-mean(x_population)
+Média de T(X) com amostras de tamanho 2 com reposição:
 
+```{r mean2}
 mean(mean_sample_2)
-mean(mean_sample_3)
+```
 
+Média de T(X) com amostras de tamanho 3 com reposição:
+
+```{r mean3}
+mean(mean_sample_3)
+```
+
+Variância de T(X) com amostras de tamanho 2 com reposição:
+
+```{r var2}
 var(mean_sample_2)
+```
+
+Variância de T(X) com amostras de tamanho 3 com reposição:
+
+```{r var3}
 var(mean_sample_3)
 ```
 
+Média da população:
+
+```{r meanp}
+mean(x_population)
+```
+
+Variância da população:
+
+```{r varp}
+var(x_population)
+```
+
+### c)
+
+Seguindo o resultado teórico, com amostras de tamanho próximo ao tamanho da população, T(X) tem comportamento modelado pela distribuição normal e sua média tende a ser a próxima da média da população. Em relação à variância, quanto maior o tamanho da amostra menor a variância, também de acordo com a teoria.
+
+### d)
+
+Observando os histogramas gerados na parte 1 desta atividade, podemos observar graficamente que, quanto maior o tamanho da amostra, maior será o grau de próximidade da distribuição de T(X) com a distribuição normal. Logo os resultados empíricos se aproximam bastante dos resultados teóricos.
+
+## 2.
+
+``` {r}
+norm_population <- rnorm(1000, 100, 5)
+norm_sample_matrix <- matrix(nrow = 1000, ncol = 100)
+
+for(i in 1:1000) {
+  norm_sample_matrix[i,] <- sample(norm_population, size = 100)
+}
+
+norm_sample_mean <- apply(norm_sample_matrix, 1, mean)
+norm_sample_var <- apply(norm_sample_matrix, 1, var)
+
+hist(norm_sample_mean)
+hist(norm_sample_var)
+``` 
+
+Notamos que os valores da média e da variância na amostra são bem próximos da média e da variância na população.
+
+## 3.
 
